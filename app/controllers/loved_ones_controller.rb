@@ -26,11 +26,11 @@ class LovedOnesController < ApplicationController
         end
     end
 
-    # def update
-    #     @loved_one = LovedOne.find(params[:id])
-    #     @loved_one.update({lovedOne_params})
-    #     render json: @loved_one
-    # end
+    def update
+        @loved_one = LovedOne.find(params[:id])
+        @loved_one.update(lovedOne_params)
+        render json: @loved_one
+    end
 
     def destroy
         @lovedOne = LovedOne.find(params[:id])
@@ -38,9 +38,9 @@ class LovedOnesController < ApplicationController
         render json: {message: "Removed loved one from your list."}
     end
 
-    # private
+    private
 
-    # def lovedOne_params
-    #     params.require(:loved_one).permit([:name, :birthday, :gender, :image_url, :relationship, :mailing_address1, :mailing_address2, :mailing_city, :mailing_state, :mailing_zip])
-    # end
+    def lovedOne_params
+        params.require(:loved_one).permit([:name, :birthday, :gender, :image_url, :relationship, :mailing_address1, :mailing_address2, :mailing_city, :mailing_state, :mailing_zip])
+    end
 end
