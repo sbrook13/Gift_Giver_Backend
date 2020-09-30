@@ -15,7 +15,6 @@ class LovedOnesController < ApplicationController
             name: params[:name],
             birthday: params[:birthday],
             gender: params[:gender],
-            image_url: params[:image_url],
             relationship: params[:relationship]
         })
         if @lovedOne.valid?

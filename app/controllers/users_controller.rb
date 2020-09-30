@@ -1,8 +1,9 @@
 class UsersController < ApplicationController    
-    skip_before_action :authenticate, only: [:create, :update, :index]
+    skip_before_action :authenticate, only: [:create]
+
     def index
         @users = User.all
-        render json: @users
+        render json: @users, include: [:loved_ones, :present_ideas, :interests]
     end
 
     def profile
@@ -29,6 +30,12 @@ class UsersController < ApplicationController
             password: params[:password]
         })
         render json: @user
+    end
+
+    def destroy
+        @user = User.find(params[:id])
+        @user.destroy
+        render json: "user deleted"
     end
 
     private
