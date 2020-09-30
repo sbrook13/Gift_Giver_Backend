@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
             render json: {token: token, user: @user}, status: :created
         else
-            render json: @user.errors.full_messages
+            render json: {errors: @user.errors.full_messages}, status: :unprocessable_entity
         end
     end
 
