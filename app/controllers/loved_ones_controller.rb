@@ -1,6 +1,6 @@
 class LovedOnesController < ApplicationController
     def index
-        @loved_ones = LovedOne.all
+        @loved_ones = LovedOne.where(user_id: @user.id)
         render json: @loved_ones, include: [:interests, :present_ideas]
     end
 
@@ -11,7 +11,7 @@ class LovedOnesController < ApplicationController
     
     def create
         @lovedOne = LovedOne.new({
-            user_id: params[:user_id],
+            user_id: @user.id,
             name: params[:name],
             birthday: params[:birthday],
             gender: params[:gender],
