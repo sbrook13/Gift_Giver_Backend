@@ -1,6 +1,6 @@
 class LovedOnesController < ApplicationController
     def index
-        @loved_ones = LovedOne.all
+        @loved_ones = LovedOne.where(user_id: @user.id)
         render json: @loved_ones, include: [:interests, :present_ideas]
     end
 
@@ -11,11 +11,10 @@ class LovedOnesController < ApplicationController
     
     def create
         @lovedOne = LovedOne.new({
-            user_id: params[:user_id],
+            user_id: @user.id,
             name: params[:name],
             birthday: params[:birthday],
             gender: params[:gender],
-            image_url: params[:image_url],
             relationship: params[:relationship]
         })
         if @lovedOne.valid?
@@ -26,11 +25,11 @@ class LovedOnesController < ApplicationController
         end
     end
 
-    # def update
-    #     @loved_one = LovedOne.find(params[:id])
-    #     @loved_one.update({lovedOne_params})
-    #     render json: @loved_one
-    # end
+    def update
+        @loved_one = LovedOne.find(params[:id])
+        @loved_one.update(lovedOne_params)
+        render json: @loved_one
+    end
 
     def destroy
         @lovedOne = LovedOne.find(params[:id])
@@ -38,9 +37,9 @@ class LovedOnesController < ApplicationController
         render json: {message: "Removed loved one from your list."}
     end
 
-    # private
+    private
 
-    # def lovedOne_params
-    #     params.require(:loved_one).permit([:name, :birthday, :gender, :image_url, :relationship, :mailing_address1, :mailing_address2, :mailing_city, :mailing_state, :mailing_zip])
-    # end
+    def lovedOne_params
+        params.require(:loved_one).permit([:name, :birthday, :gender, :image_url, :relationship, :mailing_address1, :mailing_address2, :mailing_city, :mailing_state, :mailing_zip])
+    end
 end
