@@ -15,8 +15,14 @@ class LovedOnesController < ApplicationController
             name: params[:name],
             birthday: params[:birthday],
             gender: params[:gender],
-            relationship: params[:relationship]
+            relationship: params[:relationship],
+            mailing_address1: params[:mailing_address1],
+            mailing_address2: params[:mailing_address2],
+            mailing_city: params[:mailing_city],
+            mailing_state: params[:mailing_state],
+            mailing_zip: params[:mailing_zip]
         })
+
         if @lovedOne.valid?
             @lovedOne.save
             render json: {lovedOne: @lovedOne}, status: :created

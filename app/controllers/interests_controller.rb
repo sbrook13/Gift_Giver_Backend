@@ -1,4 +1,5 @@
-class InterestsController < ApplicationControllerdef create
+class InterestsController < ApplicationController
+    skip_before_action :authenticate
     def index
         @interests = Interest.all
         render json: @interests, include: [:loved_one]
