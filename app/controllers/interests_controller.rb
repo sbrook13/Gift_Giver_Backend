@@ -13,4 +13,11 @@ class InterestsController < ApplicationController
         
         render json: {interest: @interest}, status: :created
     end
+
+    def destroy
+        @interest = Interest.find(params[:id])
+        @interest.destroy
+        render json: {message: "Removed interest from your list."}
+    end
+
 end

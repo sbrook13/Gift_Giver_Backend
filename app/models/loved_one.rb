@@ -1,6 +1,6 @@
 class LovedOne < ApplicationRecord
-    has_many :present_ideas
-    has_many :interests
+    has_many :present_ideas, :dependent => :delete_all
+    has_many :interests, :dependent => :delete_all
     belongs_to :user
 
     validates :name, presence: {message: "Must include your loved one's name!"}

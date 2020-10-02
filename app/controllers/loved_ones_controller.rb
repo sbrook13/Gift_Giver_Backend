@@ -46,6 +46,6 @@ class LovedOnesController < ApplicationController
     private
 
     def lovedOne_params
-        params.require(:loved_one).permit([:name, :birthday, :gender, :image_url, :relationship, :mailing_address1, :mailing_address2, :mailing_city, :mailing_state, :mailing_zip])
+        params.require(:loved_one).permit([:id, :name, :birthday, :gender, :image_url, :relationship, :mailing_address1, :mailing_address2, :mailing_city, :mailing_state, :mailing_zip])
     end
 end
