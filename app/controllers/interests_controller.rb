@@ -15,14 +15,9 @@ class InterestsController < ApplicationController
     end
 
     def destroy
-        @interests = Interest.find(params[:id])
+        @interest = Interest.find(params[:id])
         @interest.destroy
         render json: {message: "Removed interest from your list."}
     end
 
-    def destroyAll
-        @interests = Interest.where(loved_one_id: @user.id)
-        @interest.destroyAll
-        render json: {message: "Removed interests from your list."}
-    end
 end

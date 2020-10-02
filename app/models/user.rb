@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    has_many :loved_ones
+    has_many :loved_ones, :dependent => :delete_all
     has_many :present_ideas, through: :loved_ones
     has_many :interests, through: :loved_ones
 
